@@ -3,16 +3,22 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import useProducts from '../../hooks/useProducts';
+import useCart from '../../hooks/useCart';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
+    const [products, setProducts] = useProducts([]);
     const [cart, setCart] = useState([]);
 
-    useEffect ( ()=>{
-        fetch('products.json')
-        .then(res =>res.json())
-        .then(data => setProducts(data))
-    },[])
+
+    // Comment below code after using useProducts (Custom Hook)
+    // useEffect ( ()=>{
+    //     fetch('products.json')
+    //     .then(res =>res.json())
+    //     .then(data => setProducts(data))
+    // },[])
 
     useEffect( ()=>{
         const storedCart = getStoredCart();
@@ -23,11 +29,11 @@ const Shop = () => {
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity;
                 savedCart.push(addedProduct)
-                console.log(addedProduct);
+                // console.log(addedProduct);
 
             }
             
-            console.log(addedProduct);
+            // console.log(addedProduct);
             
         }
         setCart(savedCart)
@@ -71,7 +77,11 @@ newCart = [...rest, exists]
                 
                 </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+            <Cart cart={cart}>
+                    <Link to="/orders">
+                        <button >Review Order </button>
+                    </Link>
+                </Cart>
             </div>
 
            
