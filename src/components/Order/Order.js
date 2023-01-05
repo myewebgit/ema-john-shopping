@@ -30,7 +30,7 @@ const handleRemoveProduct = (product)=>{
             {/* <h2> This is order page: {products.length}</h2>
             <h2> This is cart page: {cart.length}</h2> */}
             <div className='cart-container'>
-                <Cart cart={cart}> <button  onClick={()=>Navigate('/inventory')}>Proceed Checkout</button></Cart>
+                <Cart cart={cart}> <button  onClick={()=>Navigate('/shipment')}>Proceed Shipping</button></Cart>
 
             </div>
         </div>
